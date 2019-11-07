@@ -1,10 +1,16 @@
 package com.duan.wanandroid.bean;
 
+import com.duan.wanandroid.base.network.factory.RetrofitFactory;
+import com.duan.wanandroid.base.network.utils.CommJsonObserver;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yanfa-005 on 2018/11/15
@@ -219,5 +225,11 @@ public class KnowBean {
                 this.children = children;
             }
         }
+    }
+    public static void GetRvInfo(CommJsonObserver<KnowBean> observer){
+        RetrofitFactory.getInstance().KnoInfo()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(observer);
     }
 }

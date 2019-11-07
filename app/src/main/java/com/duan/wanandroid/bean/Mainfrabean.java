@@ -1,6 +1,13 @@
 package com.duan.wanandroid.bean;
 
+import com.duan.wanandroid.base.network.factory.RetrofitFactory;
+import com.duan.wanandroid.base.network.utils.CommJsonObserver;
+
 import java.util.List;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yanfa-005 on 2018/11/1
@@ -126,5 +133,11 @@ public class Mainfrabean {
         public void setUrl(String url) {
             this.url = url;
         }
+    }
+    public static void getBanInfo(CommJsonObserver<Mainfrabean> observer){
+        RetrofitFactory.getInstance().Banner()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }

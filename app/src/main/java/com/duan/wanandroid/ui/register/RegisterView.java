@@ -1,14 +1,12 @@
 package com.duan.wanandroid.ui.register;
 
-import com.duan.wanandroid.base.BaseContract;
+
+import com.duan.wanandroid.base.interfaces.BaseMvpView;
 
 /**
- * Created by yanfa-005 on 2018/10/16
+ * Created by duan on 2018/10/16
  */
 
-public interface RegisterView {
-    public interface review extends BaseContract.BaseView {
-
-    }
+public interface RegisterView extends BaseMvpView{
 
 }

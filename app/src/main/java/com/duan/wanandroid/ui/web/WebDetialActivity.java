@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -20,13 +22,14 @@ import android.widget.RelativeLayout;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.R;
+import com.duan.wanandroid.base.BaseMvcActivity;
 import com.duan.wanandroid.utlis.ProgressDialogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WebDetialActivity extends AppCompatActivity {
+public class WebDetialActivity extends BaseMvcActivity {
 
     @BindView(R.id.back)
     AppCompatImageView back;
@@ -36,24 +39,22 @@ public class WebDetialActivity extends AppCompatActivity {
     RelativeLayout toolBar;
     @BindView(R.id.web)
     WebView webView;
-    String url;//传过来的url
-    String title;//传过来的title
+    private String url;//传过来的url
+    private String title;//传过来的title
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_detial);
-        ButterKnife.bind(this);
-        url=getIntent().getStringExtra("url");
-        title=getIntent().getStringExtra("title");
-       websetting();
-       initView();
+    public int getLayoutId() {
+        return R.layout.activity_web_detial;
     }
-
-    private void initView() {
+    @Override
+    public void initView() {
+        url = getIntent().getStringExtra("url");
+        title = getIntent().getStringExtra("title");
+        websetting();
         webView.loadUrl(url);
         tvTitle.setText(title);
     }
+
 
     private void websetting() {
         WebSettings webSetting = webView.getSettings();
@@ -69,22 +70,24 @@ public class WebDetialActivity extends AppCompatActivity {
         webView.setWebViewClient(mWebViewClient);
         webView.setWebChromeClient(mWebChromeClient);
     }
+
     private WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();
         }
+
         //页面开始加载
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            ProgressDialogUtil.showLoading(WebDetialActivity.this);
+            showLoading();
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            ProgressDialogUtil.dismissAll();
+            hideLoading();
         }
     };
 
@@ -98,38 +101,19 @@ public class WebDetialActivity extends AppCompatActivity {
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
         }
-        //调用<input type="file">标签（此处存在Bug）
-        // Android < 3.0 调用这个方法
-        public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-            Log.d("TAG", "openFileChoose(ValueCallback<Uri> uploadMsg)");
-
-
-        }
-
-        // 3.0 + 调用这个方法
-        public void openFileChooser(ValueCallback uploadMsg, String acceptType) {
-            Log.d("TAG", "openFileChoose( ValueCallback uploadMsg, String acceptType )");
-
-
-
-        }
-
-        // Android > 4.1.1 调用这个方法
-        public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-            Log.d("TAG", "openFileChoose(ValueCallback<Uri> uploadMsg, String acceptType, String capture)");
-
-
-        }
 
         // For Android 5.0+
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-            Log.e("ss111","click");
-
+            Log.e("ss111", "click");
             return true;
         }
     };
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick(R.id.back)
     public void onViewClicked() {
         finishAfterTransition();
     }
+
+
 }

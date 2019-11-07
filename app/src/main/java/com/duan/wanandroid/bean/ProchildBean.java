@@ -1,6 +1,12 @@
 package com.duan.wanandroid.bean;
 
+import com.duan.wanandroid.base.network.factory.RetrofitFactory;
+import com.duan.wanandroid.base.network.utils.CommJsonObserver;
+
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yanfa-005 on 2018/11/21
@@ -379,5 +385,11 @@ public class ProchildBean {
                 }
             }
         }
+    }
+    public static void getProChildInfo(CommJsonObserver<ProchildBean> observer,int num,int id){
+        RetrofitFactory.getInstance().ProChildInfo(num,id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }

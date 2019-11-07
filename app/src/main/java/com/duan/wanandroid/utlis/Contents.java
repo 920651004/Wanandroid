@@ -9,6 +9,7 @@ public class Contents {
     public static final int Knowledge=101;
     public static final int Navigation=102;
     public static final int Project=103;
+    public static final int WxActicle=104;
     /*
     * 方法：POST
     * 参数：username，password

@@ -1,6 +1,12 @@
 package com.duan.wanandroid.bean;
 
+import com.duan.wanandroid.base.network.factory.RetrofitFactory;
+import com.duan.wanandroid.base.network.utils.CommJsonObserver;
+
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yanfa-005 on 2018/11/16
@@ -321,5 +327,11 @@ public class NavBean {
                 this.tags = tags;
             }
         }
+    }
+    public static void getNavInfo(CommJsonObserver<NavBean> observer){
+        RetrofitFactory.getInstance().NavInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }

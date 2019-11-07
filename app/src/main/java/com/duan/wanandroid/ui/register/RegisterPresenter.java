@@ -1,3 +1,4 @@
+/*
 package com.duan.wanandroid.ui.register;
 
 import android.content.Context;
@@ -8,13 +9,14 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+*/
 /**
  * Created by yanfa-005 on 2018/10/16
- */
+ *//*
+
 
 public class RegisterPresenter  extends BasePresenter<RegisterView.review>{
     Context context;
-
     public RegisterPresenter(Context context) {
         this.context = context;
     }
@@ -31,3 +33,4 @@ public class RegisterPresenter  extends BasePresenter<RegisterView.review>{
                 });
     }
 }
+*/

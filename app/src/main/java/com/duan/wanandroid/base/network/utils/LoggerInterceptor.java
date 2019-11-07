@@ -1,0 +1,229 @@
+package com.duan.wanandroid.base.network.utils;
+
+import android.support.annotation.NonNull;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
+import okhttp3.Connection;
+import okhttp3.Headers;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.internal.http.HttpHeaders;
+import okio.Buffer;
+
+/**
+ * 网络请求Log拦截器
+ */
+
+public class LoggerInterceptor implements Interceptor {
+    private static final Charset UTF8 = Charset.forName("UTF-8");
+    private volatile LoggerInterceptor.Level printLevel;
+    private java.util.logging.Level colorLevel;
+    private Logger logger;
+
+    public LoggerInterceptor(String tag) {
+        this.printLevel = LoggerInterceptor.Level.NONE;
+        this.logger = Logger.getLogger(tag);
+    }
+
+    public void setPrintLevel(LoggerInterceptor.Level level) {
+        if (this.printLevel == null) {
+            throw new NullPointerException("printLevel == null. Use Level.NONE instead.");
+        } else {
+            this.printLevel = level;
+        }
+    }
+
+    public void setColorLevel(java.util.logging.Level level) {
+        this.colorLevel = level;
+    }
+
+    private void log(String message) {
+        this.logger.log(this.colorLevel, message);
+    }
+
+    @NonNull
+    public Response intercept(@NonNull Chain chain) throws IOException {
+        Request request = chain.request();
+        if (this.printLevel == LoggerInterceptor.Level.NONE) {
+            return chain.proceed(request);
+        } else {
+            this.logForRequest(request, chain.connection());
+            long startNs = System.nanoTime();
+
+            Response response;
+            try {
+                response = chain.proceed(request);
+            } catch (Exception e) {
+                this.log("<-- HTTP FAILED: " + e);
+                throw e;
+            }
+
+            long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+            return this.logForResponse(response, tookMs);
+        }
+    }
+
+    private void logForRequest(Request request, Connection connection) {
+        boolean logBody = this.printLevel == LoggerInterceptor.Level.BODY;
+        boolean logHeaders = this.printLevel == LoggerInterceptor.Level.BODY || this.printLevel == LoggerInterceptor.Level.HEADERS;
+        RequestBody requestBody = request.body();
+        boolean hasRequestBody = requestBody != null;
+        Protocol protocol = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
+
+        try {
+            String e = "--> " + request.method() + ' ' + request.url() + ' ' + protocol;
+            this.log(e);
+            if (logHeaders) {
+                if (hasRequestBody) {
+                    if (requestBody.contentType() != null) {
+                        this.log("\tContent-Type: " + requestBody.contentType());
+                    }
+
+                    if (requestBody.contentLength() != -1L) {
+                        this.log("\tContent-Length: " + requestBody.contentLength());
+                    }
+                }
+
+                Headers headers = request.headers();
+                int i = 0;
+
+                for (int count = headers.size(); i < count; ++i) {
+                    String name = headers.name(i);
+                    if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
+                        this.log("\t" + name + ": " + headers.value(i));
+                    }
+                }
+
+                this.log(" ");
+                if (logBody && hasRequestBody) {
+                    if (isPlaintext(requestBody.contentType())) {
+                        this.bodyToString(request);
+                    } else {
+                        this.log("\tbody: maybe [binary body], omitted!");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.log("--> END " + request.method());
+        }
+
+    }
+
+    private Response logForResponse(Response response, long tookMs) {
+        Response.Builder builder = response.newBuilder();
+        Response clone = builder.build();
+        ResponseBody responseBody = clone.body();
+        boolean logBody = this.printLevel == LoggerInterceptor.Level.BODY;
+        boolean logHeaders = this.printLevel == LoggerInterceptor.Level.BODY || this.printLevel == LoggerInterceptor.Level.HEADERS;
+
+        try {
+            this.log("<-- " + clone.code() + ' ' + clone.message() + ' ' + clone.request().url() + " (" + tookMs + "ms）");
+            if (logHeaders) {
+                Headers e = clone.headers();
+                int bytes = 0;
+
+                for (int contentType = e.size(); bytes < contentType; ++bytes) {
+                    this.log("\t" + e.name(bytes) + ": " + e.value(bytes));
+                }
+
+                this.log(" ");
+                if (logBody && HttpHeaders.hasBody(clone)) {
+                    if (responseBody == null) {
+                        return response;
+                    }
+
+                    if (isPlaintext(responseBody.contentType())) {
+                        byte[] byteArray = toByteArray(responseBody.byteStream());
+                        MediaType mediaType = responseBody.contentType();
+                        String body = new String(byteArray, getCharset(mediaType));
+                        this.log("\tbody:" + body);
+                        responseBody = ResponseBody.create(responseBody.contentType(), byteArray);
+                        return response.newBuilder().body(responseBody).build();
+                    }
+
+                    this.log("\tbody: maybe [binary body], omitted!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.log("<-- END HTTP");
+        }
+
+        return response;
+    }
+
+    private static Charset getCharset(MediaType contentType) {
+        Charset charset = contentType != null ? contentType.charset(UTF8) : UTF8;
+        if (charset == null) {
+            charset = UTF8;
+        }
+
+        return charset;
+    }
+
+    private static boolean isPlaintext(MediaType mediaType) {
+        if (mediaType == null) {
+            return false;
+        } else if (mediaType.type().equals("text")) {
+            return true;
+        } else {
+            String subtype = mediaType.subtype();
+            subtype = subtype.toLowerCase();
+            return subtype.contains("x-www-form-urlencoded") || subtype.contains("json") || subtype.contains("xml") || subtype.contains("html");
+        }
+    }
+
+    private void bodyToString(Request request) {
+        try {
+            Request e = request.newBuilder().build();
+            RequestBody body = e.body();
+            if (body == null) {
+                return;
+            }
+
+            Buffer buffer = new Buffer();
+            body.writeTo(buffer);
+            Charset charset = getCharset(body.contentType());
+            this.log("\tbody:" + buffer.readString(charset));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static byte[] toByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, len);
+        }
+        outputStream.close();
+        return outputStream.toByteArray();
+    }
+
+    public enum Level {
+        NONE,
+        HEADERS,
+        BODY;
+
+        Level() {
+
+        }
+    }
+
+}

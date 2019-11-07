@@ -1,6 +1,7 @@
 package com.duan.wanandroid.ui.register;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,13 +13,13 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.duan.wanandroid.R;
-import com.duan.wanandroid.base.BaseActivity;
+
+import com.duan.wanandroid.base.BaseMvpActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterView {
+public class RegisterActivity extends BaseMvpActivity<RegisterPresent> implements RegisterView {
 
     @BindView(R.id.back_img)
     ImageView backImg;
@@ -34,17 +35,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     Button loginRegister;
     @BindView(R.id.tool_text)
     TextView toolText;
-    RegisterPresenter presenter;
     @BindView(R.id.affirm_passward)
     EditText affirmPassward;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        ButterKnife.bind(this);
-        presenter = new RegisterPresenter(this);
-    }
+
 
     @OnClick({R.id.back_img, R.id.login_register})
     public void onViewClicked(View view) {
@@ -54,15 +48,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                 break;
             case R.id.login_register:
                 if (StringUtils.isEmpty(loginName.getText().toString()) || StringUtils.isEmpty(loginPassward.getText().toString())
-                        ||StringUtils.isEmpty(affirmPassward.getText().toString())) {
+                        || StringUtils.isEmpty(affirmPassward.getText().toString())) {
                     ToastUtils.showShort("请先填写名字或者密码");
                     return;
                 }
-                if (!affirmPassward.getText().toString().equals(loginPassward.getText().toString())){
+                if (!affirmPassward.getText().toString().equals(loginPassward.getText().toString())) {
                     ToastUtils.showShort("两次输入的密码不一致");
                     return;
                 }
-                presenter.Register(loginName.getText().toString(), loginPassward.getText().toString(),affirmPassward.getText().toString());
+                presenter.Register(loginName.getText().toString(), loginPassward.getText().toString(), affirmPassward.getText().toString());
                 break;
         }
     }
@@ -70,6 +64,22 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_register;
+    }
+
+    @NonNull
+    @Override
+    protected RegisterPresent initPresenter() {
+        return new RegisterPresentImpl(this,this,this);
+    }
+
+    @Override
+    public void initView() {
 
     }
 }

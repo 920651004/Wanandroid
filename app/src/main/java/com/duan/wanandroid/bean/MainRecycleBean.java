@@ -1,6 +1,12 @@
 package com.duan.wanandroid.bean;
 
+import com.duan.wanandroid.base.network.factory.RetrofitFactory;
+import com.duan.wanandroid.base.network.utils.CommJsonObserver;
+
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yanfa-005 on 2018/11/1
@@ -353,5 +359,11 @@ public class MainRecycleBean {
                 this.tags = tags;
             }
         }
+    }
+    public static void getRvInfo(CommJsonObserver<MainRecycleBean> observer,int num){
+        RetrofitFactory.getInstance().MainRecycle(num)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }
