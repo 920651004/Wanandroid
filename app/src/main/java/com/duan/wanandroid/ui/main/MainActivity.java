@@ -1,5 +1,7 @@
 package com.duan.wanandroid.ui.main;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvcActivity;
 import com.duan.wanandroid.ui.fragment.knofra.Knowframent;
@@ -20,10 +26,15 @@ import com.duan.wanandroid.ui.fragment.mainfra.Mainframent;
 import com.duan.wanandroid.ui.fragment.navfra.Navframent;
 import com.duan.wanandroid.ui.fragment.projectfra.Proframent;
 import com.duan.wanandroid.ui.fragment.wx.WxActicleFragment;
+import com.duan.wanandroid.ui.search.SearchMvpActivity;
 import com.duan.wanandroid.utlis.Contents;
+import com.duan.wanandroid.utlis.JumpUtlis;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -72,6 +83,7 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
     @Override
     public void initView() {
         toolText.setText("首页");
+        initpermission();
         initNavigationView();
         initDrawerLayout();
         initBottomView();
@@ -83,6 +95,26 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
         navBottomview.setSelectedItemId(R.id.tab_main_pager);
         loadMultipleRootFragment(R.id.main_content, 0, mainFragment, knowFragment, wxFragment, navFragment, proFragment);
     }
+
+    private void initpermission() {
+        PermissionUtils.permission(PermissionConstants.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, PermissionConstants.LOCATION)
+                .rationale((PermissionUtils.OnRationaleListener.ShouldRequest shouldRequest) -> {
+                    ToastUtils.showShort("权限未打开，请打开权限");
+                    PermissionUtils.launchAppDetailsSettings();
+                })
+                .callback(new PermissionUtils.FullCallback() {
+                    @Override
+                    public void onGranted(List<String> permissionsGranted) {
+                    }
+
+                    @Override
+                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+
+                        initpermission();
+                    }
+                }).request();
+    }
+
     private void initDrawerLayout() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, navDrawer, null, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -114,6 +146,7 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
         toggle.syncState();
         navDrawer.addDrawerListener(toggle);
     }
+
     private void initBottomView() {
         navBottomview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -185,37 +218,14 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
         return mainFragment;
     }
 
-   /* @OnClick({R.id.search_img, R.id.main_home, R.id.main_knowledge, R.id.main_navigation, R.id.main_project})
+    @OnClick({R.id.search_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_img:
-                break;
-            case R.id.main_home:
-                toolText.setText("首页");
-                showFragment = Contents.Main;
-                showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
-                hideFragment = showFragment;
-                break;
-            case R.id.main_knowledge:
-                toolText.setText("知识体系");
-                showFragment = Contents.Knowledge;
-                showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
-                hideFragment = showFragment;
-                break;
-            case R.id.main_navigation:
-                toolText.setText("导航");
-                showFragment = Contents.Navigation;
-                showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
-                hideFragment = showFragment;
-                break;
-            case R.id.main_project:
-                toolText.setText("项目");
-                showFragment = Contents.Project;
-                showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
-                hideFragment = showFragment;
+                JumpUtlis.ToSearch(mContext);
                 break;
         }
-    }*/
+    }
 
     private void initNavigationView() {
         navView.setItemIconTintList(null);

@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.SslErrorHandler;
@@ -52,7 +53,7 @@ public class WebDetialActivity extends BaseMvcActivity {
         title = getIntent().getStringExtra("title");
         websetting();
         webView.loadUrl(url);
-        tvTitle.setText(title);
+        tvTitle.setText(Html.fromHtml(title));
     }
 
 
@@ -76,6 +77,7 @@ public class WebDetialActivity extends BaseMvcActivity {
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();
         }
+
 
         //页面开始加载
         @Override
@@ -104,7 +106,6 @@ public class WebDetialActivity extends BaseMvcActivity {
 
         // For Android 5.0+
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-            Log.e("ss111", "click");
             return true;
         }
     };

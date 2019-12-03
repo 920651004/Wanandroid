@@ -10,6 +10,7 @@ public class Contents {
     public static final int Navigation=102;
     public static final int Project=103;
     public static final int WxActicle=104;
+    public static String DB_Name="duan_wan_android.db";
     /*
     * 方法：POST
     * 参数：username，password

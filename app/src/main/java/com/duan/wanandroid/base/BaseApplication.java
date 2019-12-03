@@ -2,9 +2,15 @@ package com.duan.wanandroid.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.provider.SyncStateContract;
 
 import com.blankj.utilcode.util.Utils;
+import com.duan.greenDao.DaoMaster;
+import com.duan.greenDao.DaoSession;
+import com.duan.greenDao.db.DbHelperImpl;
 import com.duan.wanandroid.R;
+import com.duan.wanandroid.utlis.Contents;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -26,7 +32,8 @@ public class BaseApplication extends Application {
 
     private static Context mApplicationContext;
     public static boolean isDebug = true;
-
+    private static BaseApplication instance;
+    private DaoSession mDaoSession;
     static {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
@@ -50,10 +57,21 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplicationContext = this.getApplicationContext();
+        instance=this;
         Utils.init(this);
         initFra();
+        initGreenDao();
+    }
+    private void initGreenDao() {
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, Contents.DB_Name);
+        SQLiteDatabase database = devOpenHelper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(database);
+        mDaoSession = daoMaster.newSession();
     }
 
+    public DaoSession getDaoSession() {
+        return mDaoSession;
+    }
     private void initFra() {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
@@ -71,6 +89,12 @@ public class BaseApplication extends Application {
                 .install();
     }
 
+    public static DbHelperImpl dbHelper(){
+        return new DbHelperImpl();
+    }
+    public static BaseApplication getInstance(){
+        return instance;
+    }
     public static Context getAppContext() {
         return mApplicationContext;
     }

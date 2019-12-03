@@ -3,8 +3,10 @@ package com.duan.wanandroid.adapter;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.duan.wanandroid.bean.NavBean;
 import com.duan.wanandroid.ui.web.WebDetialActivity;
 import com.duan.wanandroid.utlis.CommonUtils;
 import com.duan.wanandroid.utlis.JsonUtil;
+import com.duan.wanandroid.utlis.JumpUtlis;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -46,6 +49,7 @@ public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean ,BaseView
        tagFlowLayout=helper.getView(R.id.nav_child_tag);
         tagFlowLayout.setAdapter(new TagAdapter<NavBean.DataBean.ArticlesBean>(list) {
 
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public View getView(FlowLayout parent, int position, NavBean.DataBean.ArticlesBean articlesBean) {
                 TextView tv = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.flow_layout_tv,
@@ -57,10 +61,10 @@ public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean ,BaseView
                 tv.setTextColor(CommonUtils.randomColor());
                 tagFlowLayout.setOnTagClickListener((view, position1, parent1) -> {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, view,mContext.getString(R.string.tranname));
-                    Intent intent=new Intent(mContext, WebDetialActivity.class);
-                    intent.putExtra("title",list.get(position1).getTitle());
-                    intent.putExtra("url",list.get(position1).getLink());
-                    mContext.startActivity(intent,options.toBundle());
+                    JumpUtlis.ToWebDetial(mContext,
+                            list.get(position).getLink(),
+                            list.get(position).getTitle(),
+                            options);
                     return true;
                 });
                 return tv;

@@ -25,6 +25,7 @@ import com.duan.wanandroid.bean.MessageEvnet;
 import com.duan.wanandroid.bean.ProchildBean;
 import com.duan.wanandroid.ui.web.WebDetialActivity;
 import com.duan.wanandroid.utlis.JsonUtil;
+import com.duan.wanandroid.utlis.JumpUtlis;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -94,10 +95,10 @@ public class Prochildframent extends BaseMvpFrament<ProChildPresenter> implement
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.tranname));
-                Intent intent = new Intent(_mActivity, WebDetialActivity.class);
-                intent.putExtra("title", list.get(position).getTitle());
-                intent.putExtra("url", list.get(position).getLink());
-                startActivity(intent, options.toBundle());
+                JumpUtlis.ToWebDetial(getActivity(),
+                        list.get(position).getLink(),
+                        list.get(position).getTitle(),
+                        options);
             }
         });
     }

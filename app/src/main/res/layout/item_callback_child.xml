@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="81dp"
+    android:layout_height="67dp"
+    android:gravity="center"
+    android:orientation="vertical">
+<android.support.v7.widget.AppCompatImageView
+    android:id="@+id/item_cb_img"
+    android:layout_width="23dp"
+    android:layout_height="26dp"
+    android:src="@mipmap/ic_launcher"/>
+<android.support.v7.widget.AppCompatTextView
+    android:id="@+id/item_cb_tx"
+    android:layout_width="wrap_content"
+    android:text="你猜"
+    android:textSize="11dp"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

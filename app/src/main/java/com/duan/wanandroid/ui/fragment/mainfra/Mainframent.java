@@ -19,8 +19,10 @@ import com.duan.wanandroid.adapter.Mainadapter;
 import com.duan.wanandroid.base.BaseMvpFrament;
 import com.duan.wanandroid.bean.MainRecycleBean;
 import com.duan.wanandroid.bean.Mainfrabean;
+import com.duan.wanandroid.ui.search.SearchMvpActivity;
 import com.duan.wanandroid.ui.web.WebDetialActivity;
 import com.duan.wanandroid.utlis.GlideImageLoader;
+import com.duan.wanandroid.utlis.JumpUtlis;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -111,10 +113,10 @@ public class Mainframent extends BaseMvpFrament<MainPresent> implements MainfraV
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.tranname));
-                Intent intent = new Intent(_mActivity, WebDetialActivity.class);
-                intent.putExtra("title", list.get(position).getTitle());
-                intent.putExtra("url", list.get(position).getLink());
-                startActivity(intent, options.toBundle());
+                JumpUtlis.ToWebDetial(getActivity(),
+                        list.get(position).getLink(),
+                        list.get(position).getTitle(),
+                        options);
             }
         });
     }
@@ -126,12 +128,14 @@ public class Mainframent extends BaseMvpFrament<MainPresent> implements MainfraV
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void OnBannerClick(int position) {
-        Intent intent = new Intent(_mActivity, WebDetialActivity.class);
-        intent.putExtra("title", nlist.get(position).getTitle());
-        intent.putExtra("url", nlist.get(position).getUrl());
-        startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(_mActivity, mainFraBranner, getString(R.string.tranname));
+        JumpUtlis.ToWebDetial(getActivity(),
+                nlist.get(position).getUrl(),
+                nlist.get(position).getTitle(),
+                options);
     }
 
 }
