@@ -1,6 +1,7 @@
 package com.duan.wanandroid.ui.main;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -96,6 +97,12 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
         loadMultipleRootFragment(R.id.main_content, 0, mainFragment, knowFragment, wxFragment, navFragment, proFragment);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @SuppressLint("WrongConstant")
     private void initpermission() {
         PermissionUtils.permission(PermissionConstants.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, PermissionConstants.LOCATION)
                 .rationale((PermissionUtils.OnRationaleListener.ShouldRequest shouldRequest) -> {
@@ -105,15 +112,18 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
                 .callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
+                    LogUtils.e("允许");
                     }
 
                     @Override
                     public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
 
-                        initpermission();
                     }
                 }).request();
+
+
     }
+
 
     private void initDrawerLayout() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvpActivity;
+import com.duan.wanandroid.bean.LoginInfo;
 
 
 import butterknife.BindView;
@@ -45,15 +46,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> implements Logi
 
 
 
-    @Override
-    public void login(String name, String passward) {
 
-    }
-
-    @Override
-    public void register() {
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -100,7 +93,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> implements Logi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_register:
-                register();
                 break;
             case R.id.login:
                 if (StringUtils.isEmpty(loginName.getText().toString()) || StringUtils.isEmpty(loginPassward.getText().toString())) {
@@ -112,5 +104,10 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> implements Logi
                 presenter.login(loginName.getText().toString(), loginPassward.getText().toString());
                 break;
         }
+    }
+
+    @Override
+    public void getLoginInfo(LoginInfo info) {
+
     }
 }

@@ -5,6 +5,7 @@ import android.text.GetChars;
 import com.duan.wanandroid.base.network.factory.RetrofitHeader;
 import com.duan.wanandroid.bean.HotText;
 import com.duan.wanandroid.bean.KnowBean;
+import com.duan.wanandroid.bean.LoginInfo;
 import com.duan.wanandroid.bean.MainRecycleBean;
 import com.duan.wanandroid.bean.Mainfrabean;
 import com.duan.wanandroid.bean.NavBean;
@@ -15,12 +16,14 @@ import com.duan.wanandroid.bean.WxArticle;
 import com.duan.wanandroid.bean.WxArticleByOrder;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -75,4 +78,7 @@ public interface RetrofitService {
     @FormUrlEncoded
     @POST("article/query/{page}/json")
     Observable<SearchListBean> SEARCH_LIST_BEAN_OBSERVABLE(@Path("page") int page, @Field("k") String k);
+    @FormUrlEncoded
+    @POST("user/login")
+    Observable<LoginInfo> LOGIN_INFO_OBSERVABLE(@FieldMap HashMap<String,String> map);
 }

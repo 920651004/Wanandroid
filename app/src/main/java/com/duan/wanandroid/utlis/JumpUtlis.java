@@ -3,8 +3,13 @@ package com.duan.wanandroid.utlis;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 
+import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.duan.wanandroid.R;
+import com.duan.wanandroid.base.BaseApplication;
 import com.duan.wanandroid.ui.callback.CallBackActivity;
 import com.duan.wanandroid.ui.search.SearchMvpActivity;
 import com.duan.wanandroid.ui.searchlist.SearchListActivity;
@@ -27,6 +32,12 @@ import java.util.UUID;
  * @Version: 1.0
  */
 public class JumpUtlis {
+    public static boolean checkPermissionAllGranted(String permissions,Context context) {
+        PackageManager pm = context.getPackageManager();
+        boolean permission_readStorage = (PackageManager.PERMISSION_GRANTED ==
+                pm.checkPermission(permissions, AppUtils.getAppPackageName()));
+        return permission_readStorage;
+    }
     private static Intent intent;
     /**
      *@author Duan

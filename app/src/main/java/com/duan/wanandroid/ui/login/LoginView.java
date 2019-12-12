@@ -2,6 +2,7 @@ package com.duan.wanandroid.ui.login;
 
 
 import com.duan.wanandroid.base.interfaces.BaseMvpView;
+import com.duan.wanandroid.bean.LoginInfo;
 
 /**
  * Created by yanfa-005 on 2018/10/15
@@ -9,6 +10,5 @@ import com.duan.wanandroid.base.interfaces.BaseMvpView;
 
 public interface LoginView extends BaseMvpView {
 
-    void login(String name, String passward);
-    void register();
+    void getLoginInfo(LoginInfo info);
 }
