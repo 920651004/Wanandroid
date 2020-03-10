@@ -1,23 +1,20 @@
 package com.duan.wanandroid.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
 
 import com.duan.wanandroid.base.interfaces.BaseView;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * 所有Activity基类
  */
 
@@ -26,6 +23,7 @@ public abstract class BaseAppCompatActivity extends SupportActivity implements B
     private Unbinder unbind;
 
     public Context mContext;
+
     @Nullable
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public abstract class BaseAppCompatActivity extends SupportActivity implements B
         setContentView(getLayoutId());
 
         unbind = ButterKnife.bind(this);
-        mContext=this;
+        mContext = this;
         init();
 
         process(savedInstanceState);
@@ -62,7 +60,7 @@ public abstract class BaseAppCompatActivity extends SupportActivity implements B
     protected void onDestroy() {
         isDestroyed = true;
         unbind.unbind();
-        mContext=null;
+        mContext = null;
         super.onDestroy();
     }
 

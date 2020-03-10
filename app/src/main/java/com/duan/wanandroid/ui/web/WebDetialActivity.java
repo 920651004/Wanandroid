@@ -1,17 +1,10 @@
 package com.duan.wanandroid.ui.web;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
@@ -21,13 +14,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvcActivity;
-import com.duan.wanandroid.utlis.ProgressDialogUtil;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WebDetialActivity extends BaseMvcActivity {
@@ -47,6 +40,7 @@ public class WebDetialActivity extends BaseMvcActivity {
     public int getLayoutId() {
         return R.layout.activity_web_detial;
     }
+
     @Override
     public void initView() {
         url = getIntent().getStringExtra("url");

@@ -1,6 +1,5 @@
 package com.duan.wanandroid.adapter;
 
-import android.support.annotation.Nullable;
 import android.text.Html;
 
 import com.blankj.utilcode.util.StringUtils;
@@ -10,6 +9,8 @@ import com.duan.wanandroid.R;
 import com.duan.wanandroid.bean.SearchListBean;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Duan on 2019/11/19

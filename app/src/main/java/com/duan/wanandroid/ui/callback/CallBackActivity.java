@@ -1,12 +1,7 @@
 package com.duan.wanandroid.ui.callback;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ResourceUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.adapter.CallBackAdapter;
 import com.duan.wanandroid.adapter.CallBackChildAdapter;
@@ -15,6 +10,8 @@ import com.duan.wanandroid.bean.Hostinfo;
 import com.duan.wanandroid.utlis.CallBack;
 import com.duan.wanandroid.utlis.JsonUtil;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public class CallBackActivity extends BaseMvcActivity implements CallBack {

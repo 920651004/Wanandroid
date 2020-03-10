@@ -1,17 +1,17 @@
 package com.duan.wanandroid.adapter;
 
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duan.wanandroid.R;
-import com.duan.wanandroid.base.BaseApplication;
 import com.duan.wanandroid.bean.ProchildBean;
 
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 
 /**
  * Created by yanfa-005 on 2018/11/21

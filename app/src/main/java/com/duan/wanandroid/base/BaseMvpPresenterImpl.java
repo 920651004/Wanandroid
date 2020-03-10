@@ -1,8 +1,6 @@
 package com.duan.wanandroid.base;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-
 
 import com.duan.wanandroid.base.interfaces.BaseMvpPresenter;
 import com.duan.wanandroid.base.interfaces.BaseMvpView;
@@ -12,6 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import io.reactivex.disposables.Disposable;
 
 /**

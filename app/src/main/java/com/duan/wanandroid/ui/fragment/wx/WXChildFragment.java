@@ -1,14 +1,7 @@
 package com.duan.wanandroid.ui.fragment.wx;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.adapter.WxChildadapter;
 import com.duan.wanandroid.base.BaseMvpFrament;
@@ -17,8 +10,10 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 

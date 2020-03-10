@@ -1,10 +1,5 @@
 package com.duan.wanandroid.ui.fragment.projectfra;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.R;
@@ -16,6 +11,11 @@ import com.flyco.tablayout.SlidingTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 /**

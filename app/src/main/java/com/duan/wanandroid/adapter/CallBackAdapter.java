@@ -1,16 +1,15 @@
 package com.duan.wanandroid.adapter;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.bean.Hostinfo;
 import com.duan.wanandroid.utlis.CallBack;
 
-
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Duan on 2019/11/28
@@ -30,7 +29,7 @@ public class CallBackAdapter extends BaseQuickAdapter<Hostinfo.ReportGroupConfig
     CallBackChildAdapter adapter;
     RecyclerView CallBackRv;
     CallBack back;
-    public CallBackAdapter(int layoutResId, @Nullable List<Hostinfo.ReportGroupConfigBean> data,CallBack callBack) {
+    public CallBackAdapter(int layoutResId, @Nullable List<Hostinfo.ReportGroupConfigBean> data, CallBack callBack) {
         super(layoutResId, data);
         back=callBack;
 

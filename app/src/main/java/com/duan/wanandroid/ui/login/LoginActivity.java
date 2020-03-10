@@ -1,7 +1,5 @@
 package com.duan.wanandroid.ui.login;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,16 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvpActivity;
 import com.duan.wanandroid.bean.LoginInfo;
 
-
+import androidx.annotation.NonNull;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -41,12 +37,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> implements Logi
     RelativeLayout toolBar;
     @BindView(R.id.tool_text)
     TextView toolText;
-
-
-
-
-
-
 
     @Override
     protected void onDestroy() {
@@ -86,7 +76,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> implements Logi
     @NonNull
     @Override
     protected LoginPresent initPresenter() {
-        return new LoginPresentImp(this,this,this);
+        return new LoginPresentImp(this, this, this);
     }
 
     @OnClick({R.id.login_register, R.id.login})

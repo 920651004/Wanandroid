@@ -6,18 +6,15 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.duan.wanandroid.R;
 
 import java.util.HashMap;
+
+import androidx.fragment.app.Fragment;
 
 public class ProgressDialogUtil {
 
@@ -29,34 +26,37 @@ public class ProgressDialogUtil {
 
     /**
      * 加载中的
+     *
      * @param context
      */
     public synchronized static void showLoading(Activity context) {
         if (context != null && !context.isFinishing()) {
-            showWaiting(context, R.layout.load_wait_dialog,false,"");
+            showWaiting(context, R.layout.load_wait_dialog, false, "");
         }
     }
+
     public synchronized static void showLoading(Activity context, String msg) {
         if (context != null && !context.isFinishing()) {
-            showWaiting(context, R.layout.load_wait_dialog,false,false,msg);
+            showWaiting(context, R.layout.load_wait_dialog, false, false, msg);
         }
     }
 
     /**
      * 显示返回结果成功的
+     *
      * @param context
      * @param isSuccess
      */
     public synchronized static void showLoading(Activity context, boolean isSuccess) {
         if (context != null && !context.isFinishing()) {
-            showWaiting(context, R.layout.load_wait_dialog,isSuccess,"");
+            showWaiting(context, R.layout.load_wait_dialog, isSuccess, "");
         }
 
     }
 
     public synchronized static void showLoading(Activity context, boolean isshow, boolean isSuccess) {
         if (context != null && !context.isFinishing()) {
-            showWaiting(context, R.layout.load_wait_dialog, isshow,isSuccess,"");
+            showWaiting(context, R.layout.load_wait_dialog, isshow, isSuccess, "");
         }
     }
 
@@ -74,8 +74,8 @@ public class ProgressDialogUtil {
     }
 
     public synchronized static void showWaiting(final Activity context,
-                                                int resid,boolean isSuccess,String msg) {
-        showWaiting(context, resid, false,isSuccess,msg);
+                                                int resid, boolean isSuccess, String msg) {
+        showWaiting(context, resid, false, isSuccess, msg);
     }
 
     public synchronized static void showWaiting(Activity context, int resid,
@@ -84,8 +84,8 @@ public class ProgressDialogUtil {
             // dismiss(context);
             Activity ctx = getSafeContext(context);
             if (ctx != null) {
-                View view = LayoutInflater.from(context).inflate(resid,null);
-                animationView=view.findViewById(R.id.loading_anima);
+                View view = LayoutInflater.from(context).inflate(resid, null);
+                animationView = view.findViewById(R.id.loading_anima);
                 animationView.setAnimation("load.json");
                 animationView.loop(true);
                 animationView.playAnimation();
@@ -179,7 +179,7 @@ public class ProgressDialogUtil {
 
     private synchronized static void dismiss(String uid) {
         Dialog progressDialog = map.remove(uid);
-        if (animationView!=null){
+        if (animationView != null) {
             animationView.cancelAnimation();
         }
         if (progressDialog != null) {

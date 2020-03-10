@@ -1,7 +1,5 @@
 package com.duan.wanandroid.base.network.utils;
 
-import android.support.annotation.NonNull;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +7,7 @@ import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import androidx.annotation.NonNull;
 import okhttp3.Connection;
 import okhttp3.Headers;
 import okhttp3.Interceptor;

@@ -1,13 +1,13 @@
 package com.duan.wanandroid.adapter;
 
-import android.support.annotation.Nullable;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duan.greenDao.HistoryData;
 import com.duan.wanandroid.R;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Duan on 2019/11/14

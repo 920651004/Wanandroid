@@ -2,22 +2,20 @@ package com.duan.wanandroid.base;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.duan.wanandroid.base.interfaces.BaseMvpPresenter;
-import com.duan.wanandroid.base.network.factory.RetrofitFactory;
 
-import io.reactivex.disposables.Disposable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * Mvp架构的Activity基类
  */
 
-public abstract class BaseMvpActivity<T extends BaseMvpPresenter> extends BaseAppCompatActivity{
+public abstract class BaseMvpActivity<T extends BaseMvpPresenter> extends BaseAppCompatActivity {
 
     protected T presenter;
     protected Dialog dialog;

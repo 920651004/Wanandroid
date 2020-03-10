@@ -2,11 +2,7 @@ package com.duan.wanandroid.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -15,9 +11,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duan.wanandroid.R;
-import com.duan.wanandroid.base.BaseApplication;
 import com.duan.wanandroid.bean.NavBean;
-import com.duan.wanandroid.ui.web.WebDetialActivity;
 import com.duan.wanandroid.utlis.CommonUtils;
 import com.duan.wanandroid.utlis.JsonUtil;
 import com.duan.wanandroid.utlis.JumpUtlis;
@@ -28,13 +22,18 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 /**
  * Created by yanfa-005 on 2018/11/16
  */
 
-public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean ,BaseViewHolder> {
-    List<NavBean.DataBean.ArticlesBean> list=new ArrayList<>();
+public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean, BaseViewHolder> {
+    List<NavBean.DataBean.ArticlesBean> list = new ArrayList<>();
     TagFlowLayout tagFlowLayout;
+
     public NavChildAdapter(@LayoutRes int layoutResId, @Nullable List<NavBean.DataBean> data) {
         super(layoutResId, data);
 
@@ -42,11 +41,11 @@ public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean ,BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, NavBean.DataBean item) {
-       // helper.setText(R.id.nav_child_text,item.getTitle());
+        // helper.setText(R.id.nav_child_text,item.getTitle());
         LogUtils.e(JsonUtil.toJson(item));
-        list=new ArrayList<>();
+        list = new ArrayList<>();
         list.addAll(item.getArticles());
-       tagFlowLayout=helper.getView(R.id.nav_child_tag);
+        tagFlowLayout = helper.getView(R.id.nav_child_tag);
         tagFlowLayout.setAdapter(new TagAdapter<NavBean.DataBean.ArticlesBean>(list) {
 
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -60,7 +59,7 @@ public class NavChildAdapter extends BaseQuickAdapter<NavBean.DataBean ,BaseView
                 tv.setText(name);
                 tv.setTextColor(CommonUtils.randomColor());
                 tagFlowLayout.setOnTagClickListener((view, position1, parent1) -> {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, view,mContext.getString(R.string.tranname));
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, view, mContext.getString(R.string.tranname));
                     JumpUtlis.ToWebDetial(mContext,
                             list.get(position).getLink(),
                             list.get(position).getTitle(),

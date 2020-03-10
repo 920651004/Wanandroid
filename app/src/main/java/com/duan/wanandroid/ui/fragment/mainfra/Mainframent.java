@@ -1,16 +1,8 @@
 package com.duan.wanandroid.ui.fragment.mainfra;
 
 import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -19,8 +11,6 @@ import com.duan.wanandroid.adapter.Mainadapter;
 import com.duan.wanandroid.base.BaseMvpFrament;
 import com.duan.wanandroid.bean.MainRecycleBean;
 import com.duan.wanandroid.bean.Mainfrabean;
-import com.duan.wanandroid.ui.search.SearchMvpActivity;
-import com.duan.wanandroid.ui.web.WebDetialActivity;
 import com.duan.wanandroid.utlis.GlideImageLoader;
 import com.duan.wanandroid.utlis.JumpUtlis;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -31,9 +21,11 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by yanfa-005 on 2018/10/30
@@ -88,10 +80,10 @@ public class Mainframent extends BaseMvpFrament<MainPresent> implements MainfraV
     }
 
     @Override
-    public void Bannerdata(List list,List<Mainfrabean.DataBean> mlist) {
-        nlist=new ArrayList<>();
+    public void Bannerdata(List list, List<Mainfrabean.DataBean> mlist) {
+        nlist = new ArrayList<>();
         nlist.addAll(mlist);
-        if (mainFraBranner!=null){
+        if (mainFraBranner != null) {
             mainFraBranner.setImages(list)
                     .setImageLoader(new GlideImageLoader())
                     .setIndicatorGravity(BannerConfig.RIGHT)

@@ -1,7 +1,5 @@
 package com.duan.wanandroid.ui.register;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +11,9 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.duan.wanandroid.R;
-
 import com.duan.wanandroid.base.BaseMvpActivity;
 
+import androidx.annotation.NonNull;
 import butterknife.BindView;
 import butterknife.OnClick;
 

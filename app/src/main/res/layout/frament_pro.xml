@@ -17,10 +17,10 @@
       tl:tl_textAllCaps="true"
       tl:tl_textBold="BOTH"
       tl:tl_textsize="14sp"/>
-  <android.support.v4.view.ViewPager
+  <androidx.viewpager.widget.ViewPager
       android:layout_below="@+id/pro_slid"
       android:id="@+id/pro_vp"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
-  </android.support.v4.view.ViewPager>
+  </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

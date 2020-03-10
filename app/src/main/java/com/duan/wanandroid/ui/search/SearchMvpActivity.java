@@ -1,27 +1,16 @@
 package com.duan.wanandroid.ui.search;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.adapter.SearchAdapter;
 import com.duan.wanandroid.base.BaseMvpActivity;
 import com.duan.wanandroid.bean.HotText;
-import com.duan.wanandroid.ui.searchlist.SearchListActivity;
 import com.duan.wanandroid.utlis.CommonUtils;
-import com.duan.wanandroid.utlis.JsonUtil;
 import com.duan.wanandroid.utlis.JumpUtlis;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -30,6 +19,12 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -71,7 +66,7 @@ public class SearchMvpActivity extends BaseMvpActivity<SearchPresenter> implemen
 
     @Override
     public void setHotInfo(List<HotText.DataBean> hotList) {
-        dataBeanList=hotList;
+        dataBeanList = hotList;
         hotFlow.setAdapter(new TagAdapter<HotText.DataBean>(hotList) {
             @Override
             public View getView(FlowLayout parent, int position, HotText.DataBean dataBean) {
@@ -88,14 +83,13 @@ public class SearchMvpActivity extends BaseMvpActivity<SearchPresenter> implemen
     }
 
 
-
     @Override
     public void initView() {
         presenter.getHotText();
         searchView.setIconifiedByDefault(false);
         searchView.setQueryHint("搜索更多干货");
 
-        adapter=new SearchAdapter(R.layout.item_search,presenter.LoadHistory());
+        adapter = new SearchAdapter(R.layout.item_search, presenter.LoadHistory());
         serachHistoryRv.setLayoutManager(new LinearLayoutManager(this));
         serachHistoryRv.setAdapter(adapter);
         adapter.setOnItemChildClickListener((adapter, view, position) -> {
@@ -109,7 +103,7 @@ public class SearchMvpActivity extends BaseMvpActivity<SearchPresenter> implemen
 
             presenter.addHistory(dataBeanList.get(position).getName());
             adapter.setNewData(presenter.LoadHistory());
-            JumpUtlis.GoSearchDetial(mContext,dataBeanList.get(position).getName());
+            JumpUtlis.GoSearchDetial(mContext, dataBeanList.get(position).getName());
             return true;
         });
     }
@@ -122,10 +116,10 @@ public class SearchMvpActivity extends BaseMvpActivity<SearchPresenter> implemen
                 finish();
                 break;
             case R.id.search_text:
-                if (StringUtils.isEmpty(searchView.getQuery()))return;
+                if (StringUtils.isEmpty(searchView.getQuery())) return;
                 presenter.addHistory(searchView.getQuery().toString());
                 adapter.setNewData(presenter.LoadHistory());
-                JumpUtlis.GoSearchDetial(mContext,searchView.getQuery().toString());
+                JumpUtlis.GoSearchDetial(mContext, searchView.getQuery().toString());
                 break;
             case R.id.search_clear:
                 presenter.clearHistory();
