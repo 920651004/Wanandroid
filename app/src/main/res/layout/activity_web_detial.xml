@@ -31,7 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ts_img"
+        android:layout_below="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatImageView>
     <WebView
+        android:visibility="gone"
         android:layout_below="@+id/tool_bar"
         android:id="@+id/web"
         android:transitionName="@string/tranname"

@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.base.interfaces.BaseView;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Lifecycle;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -42,6 +44,7 @@ public abstract class BaseFrament extends SupportFragment implements BaseView, L
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         process(savedInstanceState);
+        getLifecycle().addObserver(new BaseOberser());
         init();
     }
 

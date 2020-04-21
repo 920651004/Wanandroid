@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvcActivity;
 
@@ -33,6 +34,8 @@ public class WebDetialActivity extends BaseMvcActivity {
     RelativeLayout toolBar;
     @BindView(R.id.web)
     WebView webView;
+    @BindView(R.id.ts_img)
+    AppCompatImageView TsImg;
     private String url;//传过来的url
     private String title;//传过来的title
 
@@ -48,6 +51,11 @@ public class WebDetialActivity extends BaseMvcActivity {
         websetting();
         webView.loadUrl(url);
         tvTitle.setText(Html.fromHtml(title));
+        img();
+    }
+
+    private void img() {
+        Glide.with(this).load("http://221.224.8.54:82/Uploads/Head/张永刚.jpg").into(TsImg);
     }
 
 

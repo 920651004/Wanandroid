@@ -29,7 +29,7 @@ public abstract class BaseAppCompatActivity extends SupportActivity implements B
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-
+        getLifecycle().addObserver(new BaseOberser());
         unbind = ButterKnife.bind(this);
         mContext = this;
         init();

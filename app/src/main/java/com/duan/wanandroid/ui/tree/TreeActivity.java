@@ -23,6 +23,6 @@ public class TreeActivity extends AppCompatActivity {
 
     private void initview() {
         DataBean dataBean=new DataBean();
-        
+
     }
 }

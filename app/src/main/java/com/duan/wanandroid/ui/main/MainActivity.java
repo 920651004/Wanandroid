@@ -271,6 +271,7 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
     }
 
     private void GoMainFra() {
+        LogUtils.e(getLifecycle().getCurrentState());
         toolText.setText("首页");
         showFragment = Contents.Main;
         showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));

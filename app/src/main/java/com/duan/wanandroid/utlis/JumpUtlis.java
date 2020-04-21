@@ -46,7 +46,7 @@ public class JumpUtlis {
      */
     
     public static void  ToWebDetial(Context mContext,String url,String title,ActivityOptions options){
-        intent=new Intent(mContext, CallBackActivity.class);
+        intent=new Intent(mContext, WebDetialActivity.class);
         intent.putExtra("url",url);
         intent.putExtra("title",title);
         mContext.startActivity(intent,options.toBundle());

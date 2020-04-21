@@ -31,7 +31,6 @@ public class ProchilAdapter extends BaseQuickAdapter<ProchildBean.DataBean.Datas
         helper.addOnClickListener(R.id.tool_bar);
         Glide.with(mContext)
                 .load(item.getEnvelopePic())
-                .crossFade()
                 .into((ImageView) helper.getView(R.id.pro_image));
     }
 }
