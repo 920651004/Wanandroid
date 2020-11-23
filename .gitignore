@@ -8,4 +8,4 @@
 /captures
 .externalNativeBuild
 /.idea
-src/main/java/com/duan/greenDao
+/app/src/main/java/com/duan/greenDao/
