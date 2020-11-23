@@ -8,10 +8,11 @@ import androidx.lifecycle.OnLifecycleEvent;
  * Created by Admin on 2020/3/12
  * lifecycle监测生命周期
  */
-public class BaseOberser implements LifecycleObserver  {
+public class BaseOberser implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
     }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
     }

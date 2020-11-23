@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Created by Duan on 2019/11/5
  */
-public interface WxArticleView  extends BaseMvpView{
-    void setTablayoutData(List<WxArticle.DataBean> list,List<String> mlist);
+public interface WxArticleView extends BaseMvpView {
+    void setTablayoutData(List<WxArticle.DataBean> list, List<String> mlist);
 }

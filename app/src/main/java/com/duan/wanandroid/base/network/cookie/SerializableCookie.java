@@ -62,11 +62,11 @@ public class SerializableCookie implements Serializable {
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        String name = (String)in.readObject();
-        String value = (String)in.readObject();
+        String name = (String) in.readObject();
+        String value = (String) in.readObject();
         long expiresAt = in.readLong();
-        String domain = (String)in.readObject();
-        String path = (String)in.readObject();
+        String domain = (String) in.readObject();
+        String path = (String) in.readObject();
         boolean secure = in.readBoolean();
         boolean httpOnly = in.readBoolean();
         boolean hostOnly = in.readBoolean();
@@ -133,7 +133,7 @@ public class SerializableCookie implements Serializable {
 
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            cookie = ((SerializableCookie)objectInputStream.readObject()).getCookie();
+            cookie = ((SerializableCookie) objectInputStream.readObject()).getCookie();
         } catch (Exception var4) {
             var4.printStackTrace();
         }
@@ -146,7 +146,7 @@ public class SerializableCookie implements Serializable {
         byte[] var2 = bytes;
         int var3 = bytes.length;
 
-        for(int var4 = 0; var4 < var3; ++var4) {
+        for (int var4 = 0; var4 < var3; ++var4) {
             byte element = var2[var4];
             int v = element & 255;
             if (v < 16) {
@@ -163,8 +163,8 @@ public class SerializableCookie implements Serializable {
         int len = hexString.length();
         byte[] data = new byte[len / 2];
 
-        for(int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte)((Character.digit(hexString.charAt(i), 16) << 4) + Character.digit(hexString.charAt(i + 1), 16));
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(hexString.charAt(i), 16) << 4) + Character.digit(hexString.charAt(i + 1), 16));
         }
 
         return data;
@@ -175,8 +175,9 @@ public class SerializableCookie implements Serializable {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             SerializableCookie that;
-            label41: {
-                that = (SerializableCookie)o;
+            label41:
+            {
+                that = (SerializableCookie) o;
                 if (this.host != null) {
                     if (this.host.equals(that.host)) {
                         break label41;

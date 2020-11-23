@@ -29,8 +29,8 @@ public class CallBackActivity extends BaseMvcActivity implements CallBack {
 
     @Override
     public void initView() {
-        Hostinfo bean= JsonUtil.fromJson(ResourceUtils.readAssets2String("info.json"),Hostinfo.class);
-        adapter=new CallBackAdapter(R.layout.item_call_back,bean.getReportGroupConfig(),this);
+        Hostinfo bean = JsonUtil.fromJson(ResourceUtils.readAssets2String("info.json"), Hostinfo.class);
+        adapter = new CallBackAdapter(R.layout.item_call_back, bean.getReportGroupConfig(), this);
         callBackRv.setLayoutManager(new LinearLayoutManager(this));
         callBackRv.setAdapter(adapter);
     }

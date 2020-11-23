@@ -113,7 +113,8 @@ public class HotText {
             this.visible = visible;
         }
     }
-    public static void getHotTextinfo(CommJsonObserver<HotText> observer){
+
+    public static void getHotTextinfo(CommJsonObserver<HotText> observer) {
         RetrofitFactory.getInstance().HOT_TEXT_OBSERVABLE()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

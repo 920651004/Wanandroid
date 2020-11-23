@@ -132,7 +132,8 @@ public class WxArticle {
             this.children = children;
         }
     }
-    public static void WxInfo(CommJsonObserver<WxArticle> observer){
+
+    public static void WxInfo(CommJsonObserver<WxArticle> observer) {
         RetrofitFactory.getInstance().WX_ARTICLE_OBSERVABLE()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

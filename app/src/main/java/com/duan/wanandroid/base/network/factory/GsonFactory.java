@@ -15,9 +15,9 @@ import java.lang.reflect.Type;
 
 /**
  * Created by Duan on 2019/10/9.
- *
+ * <p>
  * Gosn解析器单例
- *
+ * <p>
  * 用于定义Gson解析时特殊值的处理
  */
 

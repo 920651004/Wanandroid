@@ -23,7 +23,7 @@ public class DBManager {
 
     public static void init(Application application) {
         if (DB == null) {
-            DB=new DBManager(application,Contents.DB_Name);
+            DB = new DBManager(application, Contents.DB_Name);
         }
     }
 
@@ -64,7 +64,8 @@ public class DBManager {
             }, HistoryDataDao.class);
         }
     }
-    public static DbHelperImpl dbHelper(){
+
+    public static DbHelperImpl dbHelper() {
         return new DbHelperImpl();
     }
 }

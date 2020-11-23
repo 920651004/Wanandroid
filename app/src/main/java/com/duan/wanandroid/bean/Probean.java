@@ -133,7 +133,8 @@ public class Probean {
             this.children = children;
         }
     }
-    public static void getProInfo(CommJsonObserver<Probean> observer){
+
+    public static void getProInfo(CommJsonObserver<Probean> observer) {
         RetrofitFactory.getInstance().ProInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

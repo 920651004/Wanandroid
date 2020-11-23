@@ -12,7 +12,7 @@ import com.duan.wanandroid.bean.NavBean;
 /**
  * Created by Duan on 2019/10/23
  */
-public class NavPresentImpl extends BaseMvpPresenterImpl<NavView> implements NavPrensent{
+public class NavPresentImpl extends BaseMvpPresenterImpl<NavView> implements NavPrensent {
     public NavPresentImpl(Context context, NavView view, LifeFul lifeFul) {
         super(context, view, lifeFul);
     }
@@ -23,15 +23,15 @@ public class NavPresentImpl extends BaseMvpPresenterImpl<NavView> implements Nav
         NavBean.getNavInfo(new CommJsonObserver<NavBean>(getLifeFul()) {
             @Override
             public void onSuccess(NavBean navBean) {
-               getView().hideLoading();
-                if (navBean.getData()!=null){
+                getView().hideLoading();
+                if (navBean.getData() != null) {
                     getView().setdata(navBean.getData());
                 }
             }
 
             @Override
             public void onError(int errorCode, String message) {
-               getView().hideLoading();
+                getView().hideLoading();
                 ToastUtils.showShort(message);
             }
         });

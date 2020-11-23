@@ -5,7 +5,7 @@ import retrofit2.Response;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * Http Response转换成CommJsonEntity
  */
 

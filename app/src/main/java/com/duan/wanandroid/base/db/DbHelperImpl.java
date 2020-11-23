@@ -27,8 +27,9 @@ public class DbHelperImpl implements DBHelper {
     private List<HistoryData> historyDataList;
     private String data;
     private static final int HISTORY_LIST_SIZE = 10;
+
     public DbHelperImpl() {
-        this.daoSession =  DBManager.getDaoSession();
+        this.daoSession = DBManager.getDaoSession();
     }
 
     @Override
@@ -36,12 +37,12 @@ public class DbHelperImpl implements DBHelper {
         this.data = data;
         getHistoryData();
         creatHistoryData();
-        if (RemoveSameData()){
+        if (RemoveSameData()) {
             return historyDataList;
         }
-        if (historyDataList.size()<HISTORY_LIST_SIZE){
+        if (historyDataList.size() < HISTORY_LIST_SIZE) {
             getHistoryDataDao().insert(historyData);
-        }else {
+        } else {
             historyDataList.remove(0);
             historyDataList.add(historyData);
             getHistoryDataDao().deleteAll();
@@ -94,6 +95,7 @@ public class DbHelperImpl implements DBHelper {
         historyData.setDate(TimeUtils.getNowMills());
         historyData.setData(data);
     }
+
     private HistoryDataDao getHistoryDataDao() {
         return daoSession.getHistoryDataDao();
     }

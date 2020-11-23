@@ -17,5 +17,5 @@ import com.duan.wanandroid.base.interfaces.BaseMvpPresenter;
  * @Version: 1.0
  */
 public interface SearchListPresent extends BaseMvpPresenter {
-    void GetSearchListData(int page,String k);
+    void GetSearchListData(int page, String k);
 }

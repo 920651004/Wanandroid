@@ -4,11 +4,8 @@ import com.duan.wanandroid.base.network.factory.RetrofitFactory;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 
 import java.util.List;
-import java.util.Observable;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -432,8 +429,9 @@ public class SearchListBean {
             }
         }
     }
-    public static void  GetList(int page ,String k,CommJsonObserver<SearchListBean> observer){
-        RetrofitFactory.getInstance().SEARCH_LIST_BEAN_OBSERVABLE(page,k)
+
+    public static void GetList(int page, String k, CommJsonObserver<SearchListBean> observer) {
+        RetrofitFactory.getInstance().SEARCH_LIST_BEAN_OBSERVABLE(page, k)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

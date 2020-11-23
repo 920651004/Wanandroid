@@ -29,9 +29,10 @@ public class CallBackAdapter extends BaseQuickAdapter<Hostinfo.ReportGroupConfig
     CallBackChildAdapter adapter;
     RecyclerView CallBackRv;
     CallBack back;
+
     public CallBackAdapter(int layoutResId, @Nullable List<Hostinfo.ReportGroupConfigBean> data, CallBack callBack) {
         super(layoutResId, data);
-        back=callBack;
+        back = callBack;
 
     }
 

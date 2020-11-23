@@ -3,9 +3,7 @@ package com.duan.wanandroid.ui.fragment.projectfra;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.base.BaseMvpPresenterImpl;
-import com.duan.wanandroid.base.interfaces.BaseMvpPresenter;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 import com.duan.wanandroid.bean.Probean;
@@ -24,18 +22,18 @@ public class ProPresentImpl extends BaseMvpPresenterImpl<ProView> implements Pro
 
     @Override
     public void getdata() {
-       getView().showLoading();
+        getView().showLoading();
         Probean.getProInfo(new CommJsonObserver<Probean>(getLifeFul()) {
             @Override
             public void onSuccess(Probean probean) {
                 getView().hideLoading();
-                 if (probean.getData()!=null){
-                     List<String> list=new ArrayList<>();
-                     for (Probean.DataBean dataBean : probean.getData()) {
-                         list.add(dataBean.getName());
-                     }
-                     getView().settabdata(list,probean.getData());
-                 }
+                if (probean.getData() != null) {
+                    List<String> list = new ArrayList<>();
+                    for (Probean.DataBean dataBean : probean.getData()) {
+                        list.add(dataBean.getName());
+                    }
+                    getView().settabdata(list, probean.getData());
+                }
             }
 
             @Override

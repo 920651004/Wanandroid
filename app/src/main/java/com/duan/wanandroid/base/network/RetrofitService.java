@@ -78,7 +78,8 @@ public interface RetrofitService {
     @FormUrlEncoded
     @POST("article/query/{page}/json")
     Observable<SearchListBean> SEARCH_LIST_BEAN_OBSERVABLE(@Path("page") int page, @Field("k") String k);
+
     @FormUrlEncoded
     @POST("user/login")
-    Observable<LoginInfo> LOGIN_INFO_OBSERVABLE(@FieldMap HashMap<String,String> map);
+    Observable<LoginInfo> LOGIN_INFO_OBSERVABLE(@FieldMap HashMap<String, String> map);
 }

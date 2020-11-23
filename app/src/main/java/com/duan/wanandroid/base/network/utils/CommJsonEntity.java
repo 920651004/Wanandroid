@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * 返回体基类，包含http code和msg
  */
 

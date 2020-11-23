@@ -226,7 +226,8 @@ public class KnowBean {
             }
         }
     }
-    public static void GetRvInfo(CommJsonObserver<KnowBean> observer){
+
+    public static void GetRvInfo(CommJsonObserver<KnowBean> observer) {
         RetrofitFactory.getInstance().KnoInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

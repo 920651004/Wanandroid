@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * Json返回体观察者，处理服务器返回体，不包含Response相关信息
  */
 
@@ -21,7 +21,7 @@ public abstract class CommJsonObserver<T> implements Observer<T> {
     //当前判断网络请求绑定的Activity是否存活
     private LifeFul lifeFul;
 
-    public CommJsonObserver(LifeFul lifeFul){
+    public CommJsonObserver(LifeFul lifeFul) {
         this.lifeFul = lifeFul;
     }
 
@@ -63,7 +63,7 @@ public abstract class CommJsonObserver<T> implements Observer<T> {
             return "服务器繁忙";
         } else {
             LogUtils.e(e.toString());
-            return "其它异常: "+e.getClass();
+            return "其它异常: " + e.getClass();
         }
     }
 

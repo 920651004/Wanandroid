@@ -5,7 +5,6 @@ import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 
 import java.util.List;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

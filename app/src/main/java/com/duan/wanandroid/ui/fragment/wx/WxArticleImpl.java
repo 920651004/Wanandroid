@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Duan on 2019/11/5
  */
-public class WxArticleImpl extends BaseMvpPresenterImpl<WxArticleView> implements WxActiclePresent{
+public class WxArticleImpl extends BaseMvpPresenterImpl<WxArticleView> implements WxActiclePresent {
     public WxArticleImpl(Context context, WxArticleView view, LifeFul lifeFul) {
         super(context, view, lifeFul);
     }
@@ -27,13 +27,13 @@ public class WxArticleImpl extends BaseMvpPresenterImpl<WxArticleView> implement
             @Override
             public void onSuccess(WxArticle wxArticle) {
                 getView().hideLoading();
-                if (wxArticle.getErrorCode()==0){
-                    List<String> list=new ArrayList<>();
+                if (wxArticle.getErrorCode() == 0) {
+                    List<String> list = new ArrayList<>();
                     for (WxArticle.DataBean dataBean : wxArticle.getData()) {
                         list.add(dataBean.getName());
                     }
-                    getView().setTablayoutData(wxArticle.getData(),list);
-                }else {
+                    getView().setTablayoutData(wxArticle.getData(), list);
+                } else {
                     ToastUtils.showShort(wxArticle.getErrorMsg());
                 }
             }

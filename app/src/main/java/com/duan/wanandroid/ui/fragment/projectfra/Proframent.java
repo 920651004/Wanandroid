@@ -1,11 +1,9 @@
 package com.duan.wanandroid.ui.fragment.projectfra;
 
 
-import com.blankj.utilcode.util.LogUtils;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvpFrament;
 import com.duan.wanandroid.bean.Probean;
-import com.duan.wanandroid.utlis.JsonUtil;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -74,9 +72,6 @@ public class Proframent extends BaseMvpFrament<ProPresent> implements ProView {
 
 
     }
-
-
-
 
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

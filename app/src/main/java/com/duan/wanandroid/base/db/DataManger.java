@@ -18,8 +18,9 @@ import java.util.List;
  */
 public class DataManger implements DBHelper {
     private DbHelperImpl dbHelper;
+
     public DataManger(DbHelperImpl helper) {
-        dbHelper=helper;
+        dbHelper = helper;
     }
 
     @Override

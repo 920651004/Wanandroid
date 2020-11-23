@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Duan on 2019/10/9.
- *
+ * <p>
  * Retrofit工厂
  */
 
@@ -88,7 +88,7 @@ public class RetrofitFactory {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true);
-              //  .addInterceptor(getHeaderInterceptor());
+        //  .addInterceptor(getHeaderInterceptor());
         builder.hostnameVerifier(new SafeHostnameVerifier());
         if (BaseApplication.isDebug) {
             LoggerInterceptor interceptor = new LoggerInterceptor("Retrofit");
@@ -153,6 +153,7 @@ public class RetrofitFactory {
             return chain.proceed(oldRequest);
         };
     }
+
     private static class SafeHostnameVerifier implements HostnameVerifier {
         @Override
         public boolean verify(String hostname, SSLSession session) {

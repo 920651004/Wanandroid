@@ -84,8 +84,6 @@ public class BaseApplication extends Application {
     }
 
 
-
-
     private void initFra() {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
@@ -104,7 +102,7 @@ public class BaseApplication extends Application {
     }
 
 
-    public static BaseApplication getInstance(){
+    public static BaseApplication getInstance() {
         return instance;
     }
 

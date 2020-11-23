@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
-public class SPCookieStore{
+public class SPCookieStore {
     private static final String COOKIE_PREFS = "okhttp_cookie";
     private final Map<String, ConcurrentHashMap<String, Cookie>> cookies;
     private final SharedPreferences cookiePrefs;
@@ -34,7 +34,7 @@ public class SPCookieStore{
         Map<String, ?> prefsMap = this.cookiePrefs.getAll();
         Iterator var3 = prefsMap.entrySet().iterator();
 
-        while(true) {
+        while (true) {
             Entry entry;
             do {
                 do {
@@ -42,11 +42,11 @@ public class SPCookieStore{
                         return;
                     }
 
-                    entry = (Entry)var3.next();
-                } while(entry.getValue() == null);
-            } while(((String)entry.getKey()).startsWith("cookie_"));
+                    entry = (Entry) var3.next();
+                } while (entry.getValue() == null);
+            } while (((String) entry.getKey()).startsWith("cookie_"));
 
-            String[] cookieNames = TextUtils.split((String)entry.getValue(), ",");
+            String[] cookieNames = TextUtils.split((String) entry.getValue(), ",");
 
             for (String name : cookieNames) {
                 String encodedCookie = this.cookiePrefs.getString("cookie_" + name, null);
@@ -97,7 +97,7 @@ public class SPCookieStore{
 
     private void saveCookie(HttpUrl url, Cookie cookie, String cookieToken) {
         ConcurrentHashMap<String, Cookie> cookieMap = this.cookies.get(url.host());
-        if (cookieMap != null){
+        if (cookieMap != null) {
             cookieMap.put(cookieToken, cookie);
             Editor prefsWriter = this.cookiePrefs.edit();
             prefsWriter.putString(url.host(), TextUtils.join(",", cookieMap.keySet()));
@@ -112,7 +112,7 @@ public class SPCookieStore{
             return ret;
         } else {
             ConcurrentHashMap<String, Cookie> cookieMap = this.cookies.get(url.host());
-            if (cookieMap != null){
+            if (cookieMap != null) {
                 Collection<Cookie> urlCookies = cookieMap.values();
 
                 for (Cookie cookie : urlCookies) {
@@ -121,7 +121,7 @@ public class SPCookieStore{
                     } else {
                         ret.add(cookie);
                     }
-                } 
+                }
             }
             return ret;
         }
@@ -186,7 +186,7 @@ public class SPCookieStore{
 
         for (String key : this.cookies.keySet()) {
             ConcurrentHashMap<String, Cookie> cookieMap = this.cookies.get(key);
-            if (cookieMap != null){
+            if (cookieMap != null) {
                 ret.addAll(cookieMap.values());
             }
         }

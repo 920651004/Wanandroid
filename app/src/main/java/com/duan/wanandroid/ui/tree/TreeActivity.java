@@ -1,15 +1,15 @@
 package com.duan.wanandroid.ui.tree;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Build;
 import android.os.Bundle;
 
 import com.duan.wanandroid.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- *@author Admin
- *@time 2020/3/26  10:50
- *@describe  用于练习三级列表
+ * @author Admin
+ * @time 2020/3/26  10:50
+ * @describe 用于练习三级列表
  */
 public class TreeActivity extends AppCompatActivity {
 
@@ -22,7 +22,6 @@ public class TreeActivity extends AppCompatActivity {
     }
 
     private void initview() {
-        DataBean dataBean=new DataBean();
-
+        DataBean dataBean = new DataBean();
     }
 }

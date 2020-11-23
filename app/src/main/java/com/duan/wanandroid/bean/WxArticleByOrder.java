@@ -444,14 +444,16 @@ public class WxArticleByOrder {
             }
         }
     }
-    public static  void WxOrder(int page, int id ,CommJsonObserver<WxArticleByOrder> observer){
-        RetrofitFactory.getInstance().ARTICLE(id,page)
+
+    public static void WxOrder(int page, int id, CommJsonObserver<WxArticleByOrder> observer) {
+        RetrofitFactory.getInstance().ARTICLE(id, page)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(observer);
     }
-    public static  void WxByOrder(String k, int page, int id ,CommJsonObserver<WxArticleByOrder> observer){
-        RetrofitFactory.getInstance().ARTICLE_BY_ORDER_OBSERVABLE(id,page,k)
+
+    public static void WxByOrder(String k, int page, int id, CommJsonObserver<WxArticleByOrder> observer) {
+        RetrofitFactory.getInstance().ARTICLE_BY_ORDER_OBSERVABLE(id, page, k)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(observer);

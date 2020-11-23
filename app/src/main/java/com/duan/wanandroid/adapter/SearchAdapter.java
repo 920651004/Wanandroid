@@ -23,13 +23,13 @@ import androidx.annotation.Nullable;
  * @UpdateRemark: 更新说明：
  * @Version: 1.0
  */
-public class SearchAdapter extends BaseQuickAdapter<HistoryData,BaseViewHolder>{
+public class SearchAdapter extends BaseQuickAdapter<HistoryData, BaseViewHolder> {
     public SearchAdapter(int layoutResId, @Nullable List<HistoryData> data) {
         super(layoutResId, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, HistoryData item) {
-        helper.setText(R.id.search_item_text,item.getData());
+        helper.setText(R.id.search_item_text, item.getData());
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class DragBean {
     String Name;
-    List<String>list;
+    List<String> list;
 
     public String getName() {
         return Name;

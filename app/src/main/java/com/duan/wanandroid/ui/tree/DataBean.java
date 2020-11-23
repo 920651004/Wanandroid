@@ -26,7 +26,7 @@ public class DataBean {
     }
 
 
-    public static  class DetialBean{
+    public static class DetialBean {
         public String Shlf;
         public String BitchNo;
         public List<ChildData> childData;
@@ -55,7 +55,8 @@ public class DataBean {
             BitchNo = bitchNo;
         }
     }
-    public static class ChildData{
+
+    public static class ChildData {
         public String Product;
         public String ProductColor;
 

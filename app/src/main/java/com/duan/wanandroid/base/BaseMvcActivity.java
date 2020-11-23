@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * Mvc架构的Activity基类，用于功能较少时使用
  */
 

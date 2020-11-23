@@ -29,9 +29,10 @@ public class SearchListActivity extends BaseMvpActivity<SearchListPresent> imple
     AppCompatTextView shText;
     @BindView(R.id.sh_list_rv)
     RecyclerView shListRv;
-    private int page=0;
+    private int page = 0;
     private String k;//从搜索界面传过来的字段
     SearchListAdapter adapter;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_search_list;
@@ -40,13 +41,13 @@ public class SearchListActivity extends BaseMvpActivity<SearchListPresent> imple
     @NonNull
     @Override
     protected SearchListPresent initPresenter() {
-        return new SearchListImpl(this,this,this);
+        return new SearchListImpl(this, this, this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void SetListData(List<SearchListBean.DataBean.DatasBean> list) {
-        adapter=new SearchListAdapter(R.layout.item_mianfra,list);
+        adapter = new SearchListAdapter(R.layout.item_mianfra, list);
         shListRv.setLayoutManager(new LinearLayoutManager(this));
         shListRv.setAdapter(adapter);
         adapter.setOnItemChildClickListener((adapter, view, position) -> {
@@ -60,9 +61,9 @@ public class SearchListActivity extends BaseMvpActivity<SearchListPresent> imple
 
     @Override
     public void initView() {
-        k=getIntent().getStringExtra("search_text");
+        k = getIntent().getStringExtra("search_text");
         shText.setText(Html.fromHtml(k));
-        presenter.GetSearchListData(page,k);
+        presenter.GetSearchListData(page, k);
     }
 
     @OnClick(R.id.sh_back_img)

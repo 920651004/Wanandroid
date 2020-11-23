@@ -67,7 +67,7 @@ public class JsonUtil {
         return gson().fromJson(js, clazz);
     }
 
-    public static <T> List<T> getObjectList(String jsonString, Class<T> cls){
+    public static <T> List<T> getObjectList(String jsonString, Class<T> cls) {
         List<T> list = new ArrayList<T>();
         try {
             Gson gson = new Gson();
@@ -80,19 +80,21 @@ public class JsonUtil {
         }
         return list;
     }
+
     /**
      * Json 转成 Map<>
+     *
      * @param jsonStr
      * @return
      */
-    public static Map<String, Object> getMapForJson(String jsonStr){
-        JSONObject jsonObject ;
+    public static Map<String, Object> getMapForJson(String jsonStr) {
+        JSONObject jsonObject;
         try {
             jsonObject = new JSONObject(jsonStr);
 
-            Iterator<String> keyIter= jsonObject.keys();
+            Iterator<String> keyIter = jsonObject.keys();
             String key;
-            Object value ;
+            Object value;
             Map<String, Object> valueMap = new HashMap<String, Object>();
             while (keyIter.hasNext()) {
                 key = keyIter.next();
@@ -106,19 +108,21 @@ public class JsonUtil {
         }
         return null;
     }
+
     /**
      * Json 转成 List<Map<>>
+     *
      * @param jsonStr
      * @return
      */
-    public static List<Map<String, Object>> getlistForJson(String jsonStr){
+    public static List<Map<String, Object>> getlistForJson(String jsonStr) {
         List<Map<String, Object>> list = null;
         try {
             JSONArray jsonArray = new JSONArray(jsonStr);
-            JSONObject jsonObj ;
-            list = new ArrayList<Map<String,Object>>();
-            for(int i = 0 ; i < jsonArray.length() ; i ++){
-                jsonObj = (JSONObject)jsonArray.get(i);
+            JSONObject jsonObj;
+            list = new ArrayList<Map<String, Object>>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                jsonObj = (JSONObject) jsonArray.get(i);
                 list.add(getMapForJson(jsonObj.toString()));
             }
         } catch (Exception e) {
@@ -127,15 +131,18 @@ public class JsonUtil {
         }
         return list;
     }
+
     public static <T> boolean isEmpty(List<T> sourceList) {
         return (sourceList == null || sourceList.size() == 0);
     }
+
     /**
      * 输入流转字符串
+     *
      * @param is
      * @return
      */
-    public  static String convertStreamToString(InputStream is) {
+    public static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();

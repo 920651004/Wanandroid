@@ -15,7 +15,7 @@ import com.duan.wanandroid.R;
 
 /**
  * Created by Duan on 2019/10/14.
- *
+ * <p>
  * Activity中加载框
  */
 
@@ -24,6 +24,7 @@ public class BaseLoadingDialog extends Dialog {
     private ObjectAnimator cycleAnimator;
 
     private LottieAnimationView animationView;
+
     public BaseLoadingDialog(Context context) {
         super(context, R.style.LoadingDialog);
     }
@@ -38,7 +39,7 @@ public class BaseLoadingDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_base_loading);
         setCancelable(false);
-        animationView=findViewById(R.id.loading_anima);
+        animationView = findViewById(R.id.loading_anima);
         animationView.setAnimation("load.json");
         animationView.loop(true);
         animationView.playAnimation();
@@ -62,9 +63,9 @@ public class BaseLoadingDialog extends Dialog {
 
     @Override
     public void dismiss() {
-        if (animationView!=null&&animationView.isAnimating()){
+        if (animationView != null && animationView.isAnimating()) {
             animationView.cancelAnimation();
-            animationView=null;
+            animationView = null;
         }
         super.dismiss();
     }

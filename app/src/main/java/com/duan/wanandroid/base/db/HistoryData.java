@@ -18,6 +18,7 @@ public class HistoryData {
     private String Data;
     private String DTest;
     private int num;
+
     @Generated(hash = 1405178364)
     public HistoryData(Long ID, Long Date, String Data, String DTest, int num) {
         this.ID = ID;
@@ -26,40 +27,50 @@ public class HistoryData {
         this.DTest = DTest;
         this.num = num;
     }
+
     @Generated(hash = 422767273)
     public HistoryData() {
     }
+
     public Long getID() {
         return this.ID;
     }
+
     public void setID(Long ID) {
         this.ID = ID;
     }
+
     public Long getDate() {
         return this.Date;
     }
+
     public void setDate(Long Date) {
         this.Date = Date;
     }
+
     public String getData() {
         return this.Data;
     }
+
     public void setData(String Data) {
         this.Data = Data;
     }
+
     public String getDTest() {
         return this.DTest;
     }
+
     public void setDTest(String DTest) {
         this.DTest = DTest;
     }
+
     public int getNum() {
         return this.num;
     }
+
     public void setNum(int num) {
         this.num = num;
     }
-
 
 
 }

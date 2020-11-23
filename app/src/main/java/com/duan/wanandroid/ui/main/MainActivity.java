@@ -2,7 +2,6 @@ package com.duan.wanandroid.ui.main;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.duan.wanandroid.BuildConfig;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvcActivity;
 import com.duan.wanandroid.ui.fragment.knofra.Knowframent;
@@ -115,7 +113,7 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
                 .callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
-                    LogUtils.e("允许");
+                        LogUtils.e("允许");
                     }
 
                     @Override
@@ -235,8 +233,8 @@ public class MainActivity extends BaseMvcActivity implements MenuItem.OnMenuItem
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_img:
-              // int i=1/0;
-              // ToastUtils.showShort("修复成功");
+                // int i=1/0;
+                // ToastUtils.showShort("修复成功");
                 DebugDB.getAddressLog();
                 JumpUtlis.ToSearch(mContext);
                 break;

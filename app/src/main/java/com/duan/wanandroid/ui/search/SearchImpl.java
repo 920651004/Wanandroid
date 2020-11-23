@@ -4,10 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.duan.wanandroid.base.db.HistoryData;
+import com.duan.wanandroid.base.BaseMvpPresenterImpl;
 import com.duan.wanandroid.base.db.DataManger;
 import com.duan.wanandroid.base.db.DbHelperImpl;
-import com.duan.wanandroid.base.BaseMvpPresenterImpl;
+import com.duan.wanandroid.base.db.HistoryData;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 import com.duan.wanandroid.bean.HotText;
@@ -30,9 +30,10 @@ import java.util.List;
  */
 public class SearchImpl extends BaseMvpPresenterImpl<SearchMvpView> implements SearchPresenter {
     DataManger dbManger;
+
     public SearchImpl(Context context, SearchMvpView view, LifeFul lifeFul) {
         super(context, view, lifeFul);
-        dbManger=new DataManger(new DbHelperImpl());
+        dbManger = new DataManger(new DbHelperImpl());
     }
 
     @Override
@@ -42,7 +43,7 @@ public class SearchImpl extends BaseMvpPresenterImpl<SearchMvpView> implements S
             @Override
             public void onSuccess(HotText hotText) {
                 getView().hideLoading();
-                if (hotText.getErrorCode()==0){
+                if (hotText.getErrorCode() == 0) {
                     getView().setHotInfo(hotText.getData());
                 }
             }

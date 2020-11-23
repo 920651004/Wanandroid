@@ -2,8 +2,6 @@ package com.duan.wanandroid.base.interfaces;
 
 /**
  * Created by Duan on 2019/10/14.
- *
- *
  */
 
 public interface BasePresenter {

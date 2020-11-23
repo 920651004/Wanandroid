@@ -8,13 +8,12 @@ import com.duan.wanandroid.base.interfaces.LifeFul;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 import com.duan.wanandroid.bean.WxArticleByOrder;
 
-import java.util.List;
-
 /**
  * Created by Duan on 2019/11/5
  */
-public class WxChildImpl extends BaseMvpPresenterImpl<WxchildView>implements WxChildPresent {
-    private int page=1;
+public class WxChildImpl extends BaseMvpPresenterImpl<WxchildView> implements WxChildPresent {
+    private int page = 1;
+
     WxChildImpl(Context context, WxchildView view, LifeFul lifeFul) {
         super(context, view, lifeFul);
     }
@@ -26,7 +25,7 @@ public class WxChildImpl extends BaseMvpPresenterImpl<WxchildView>implements WxC
             @Override
             public void onSuccess(WxArticleByOrder wxArticleByOrder) {
                 getView().hideLoading();
-                if (wxArticleByOrder.getErrorCode()==0){
+                if (wxArticleByOrder.getErrorCode() == 0) {
                     getView().setListData(wxArticleByOrder.getData().getDatas());
                 }
             }

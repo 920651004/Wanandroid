@@ -14,7 +14,8 @@ import com.duan.wanandroid.bean.ProchildBean;
  * Created by Duan on 2019/10/23
  */
 public class ProChildPresentImpl extends BaseMvpPresenterImpl<ProChildView> implements ProChildPresenter {
-    private int page=0;
+    private int page = 0;
+
     public ProChildPresentImpl(Context context, ProChildView view, LifeFul lifeFul) {
         super(context, view, lifeFul);
     }
@@ -27,7 +28,7 @@ public class ProChildPresentImpl extends BaseMvpPresenterImpl<ProChildView> impl
             @Override
             public void onSuccess(ProchildBean prochildBean) {
                 getView().hideLoading();
-                if (prochildBean.getData()!=null){
+                if (prochildBean.getData() != null) {
                     getView().getdata(prochildBean.getData().getDatas());
                 }
 
@@ -38,7 +39,7 @@ public class ProChildPresentImpl extends BaseMvpPresenterImpl<ProChildView> impl
                 getView().hideLoading();
                 ToastUtils.showShort(message);
             }
-        },page,id);
+        }, page, id);
     }
 
     @Override

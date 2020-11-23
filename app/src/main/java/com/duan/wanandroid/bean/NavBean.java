@@ -328,7 +328,8 @@ public class NavBean {
             }
         }
     }
-    public static void getNavInfo(CommJsonObserver<NavBean> observer){
+
+    public static void getNavInfo(CommJsonObserver<NavBean> observer) {
         RetrofitFactory.getInstance().NavInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

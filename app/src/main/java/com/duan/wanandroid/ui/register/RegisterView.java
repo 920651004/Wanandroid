@@ -7,6 +7,6 @@ import com.duan.wanandroid.base.interfaces.BaseMvpView;
  * Created by duan on 2018/10/16
  */
 
-public interface RegisterView extends BaseMvpView{
+public interface RegisterView extends BaseMvpView {
 
 }

@@ -1,13 +1,11 @@
 package com.duan.wanandroid.bean;
 
-import com.duan.wanandroid.base.network.RetrofitService;
 import com.duan.wanandroid.base.network.factory.RetrofitFactory;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 
 import java.util.HashMap;
 import java.util.List;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -175,7 +173,8 @@ public class LoginInfo {
             this.collectIds = collectIds;
         }
     }
-    public static void Login(CommJsonObserver<LoginInfo> observer, HashMap<String,String>map){
+
+    public static void Login(CommJsonObserver<LoginInfo> observer, HashMap<String, String> map) {
         RetrofitFactory.getInstance().LOGIN_INFO_OBSERVABLE(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

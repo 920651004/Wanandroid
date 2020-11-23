@@ -45,8 +45,6 @@ public class Prochildframent extends BaseMvpFrament<ProChildPresenter> implement
     }
 
 
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.frament_prochild;

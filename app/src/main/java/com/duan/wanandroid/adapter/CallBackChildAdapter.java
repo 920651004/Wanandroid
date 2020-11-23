@@ -1,7 +1,6 @@
 package com.duan.wanandroid.adapter;
 
 
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duan.wanandroid.bean.Hostinfo;
@@ -24,7 +23,7 @@ import androidx.annotation.Nullable;
  * @UpdateRemark: 更新说明：
  * @Version: 1.0
  */
-public class CallBackChildAdapter extends BaseQuickAdapter<Hostinfo.ReportGroupConfigBean.ReportConfigBean,BaseViewHolder> {
+public class CallBackChildAdapter extends BaseQuickAdapter<Hostinfo.ReportGroupConfigBean.ReportConfigBean, BaseViewHolder> {
     public CallBackChildAdapter(int layoutResId, @Nullable List<Hostinfo.ReportGroupConfigBean.ReportConfigBean> data) {
         super(layoutResId, data);
     }

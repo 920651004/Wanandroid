@@ -4,8 +4,6 @@ package com.duan.wanandroid.ui.fragment.wx;
 import com.duan.wanandroid.R;
 import com.duan.wanandroid.base.BaseMvpFrament;
 import com.duan.wanandroid.bean.WxArticle;
-import com.duan.wanandroid.ui.fragment.projectfra.Prochildframent;
-import com.duan.wanandroid.ui.fragment.projectfra.Proframent;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -53,14 +51,14 @@ public class WxActicleFragment extends BaseMvpFrament<WxActiclePresent> implemen
     }
 
     @Override
-    public void setTablayoutData(List<WxArticle.DataBean> list,List<String> mlist) {
-        mTitle=new String[mlist.size()];
+    public void setTablayoutData(List<WxArticle.DataBean> list, List<String> mlist) {
+        mTitle = new String[mlist.size()];
         mlist.toArray(mTitle);
         for (WxArticle.DataBean bean : list) {
             mFragments.add(WXChildFragment.getIntentce(bean.getId()));
         }
         wxVp.setAdapter(adapter);
-        wxTab.setViewPager(wxVp,mTitle);
+        wxTab.setViewPager(wxVp, mTitle);
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

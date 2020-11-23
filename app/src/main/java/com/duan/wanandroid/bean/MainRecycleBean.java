@@ -360,7 +360,8 @@ public class MainRecycleBean {
             }
         }
     }
-    public static void getRvInfo(CommJsonObserver<MainRecycleBean> observer,int num){
+
+    public static void getRvInfo(CommJsonObserver<MainRecycleBean> observer, int num) {
         RetrofitFactory.getInstance().MainRecycle(num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

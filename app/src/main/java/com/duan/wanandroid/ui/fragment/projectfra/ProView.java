@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ProView extends BaseMvpView {
 
-        void settabdata(List list,List data);
+    void settabdata(List list, List data);
 
 
 }

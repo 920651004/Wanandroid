@@ -37,7 +37,7 @@ public class MainPresentImpl extends BaseMvpPresenterImpl<MainfraView> implement
                     for (Mainfrabean.DataBean bean : mainfrabean.getData()) {
                         mlist.add(bean.getImagePath());
                     }
-                    getView().Bannerdata(mlist,mainfrabean.getData());
+                    getView().Bannerdata(mlist, mainfrabean.getData());
                 }
             }
 

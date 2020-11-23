@@ -7,7 +7,6 @@ import com.duan.wanandroid.base.BaseMvpPresenterImpl;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;
 import com.duan.wanandroid.bean.LoginInfo;
-import com.duan.wanandroid.utlis.JsonUtil;
 
 import java.util.HashMap;
 
@@ -37,20 +36,20 @@ public class LoginPresentImp extends BaseMvpPresenterImpl<LoginView> implements 
     @Override
     public void login(String name, String pwd) {
         getView().showLoading();
-        HashMap<String,String>map=new HashMap<>();
-        map.put("username",name);
-        map.put("password",pwd);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", name);
+        map.put("password", pwd);
         LoginInfo.Login(new CommJsonObserver<LoginInfo>(getLifeFul()) {
             @Override
             public void onSuccess(LoginInfo loginInfo) {
                 getView().hideLoading();
-               getView().getLoginInfo(loginInfo);
+                getView().getLoginInfo(loginInfo);
             }
 
             @Override
             public void onError(int errorCode, String message) {
                 getView().hideLoading();
             }
-        },map);
+        }, map);
     }
 }

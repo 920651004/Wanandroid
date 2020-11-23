@@ -132,7 +132,7 @@ public class ProchildBean {
              * collect : false
              * courseId : 13
              * desc : 一款基于鸿洋大神提供的玩Android Api的app。
-             项目使用 MVP+Retrofit+RxJava+Glide+ARouter等一些很主流的框架
+             * 项目使用 MVP+Retrofit+RxJava+Glide+ARouter等一些很主流的框架
              * envelopePic : http://www.wanandroid.com/blogimgs/7949fdd4-81cd-4c26-a79e-686e65526ff3.png
              * fresh : false
              * id : 7497
@@ -386,8 +386,9 @@ public class ProchildBean {
             }
         }
     }
-    public static void getProChildInfo(CommJsonObserver<ProchildBean> observer,int num,int id){
-        RetrofitFactory.getInstance().ProChildInfo(num,id)
+
+    public static void getProChildInfo(CommJsonObserver<ProchildBean> observer, int num, int id) {
+        RetrofitFactory.getInstance().ProChildInfo(num, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
