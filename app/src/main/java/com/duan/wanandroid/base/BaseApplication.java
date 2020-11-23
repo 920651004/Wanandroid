@@ -3,13 +3,12 @@ package com.duan.wanandroid.base;
 import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.SyncStateContract;
 
 import com.blankj.utilcode.util.Utils;
 import com.duan.greenDao.DaoMaster;
 import com.duan.greenDao.DaoSession;
-import com.duan.greenDao.db.DbHelperImpl;
 import com.duan.wanandroid.R;
+import com.duan.wanandroid.base.db.DBManager;
 import com.duan.wanandroid.utlis.Contents;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -19,7 +18,10 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
+import androidx.multidex.MultiDex;
 import me.yokeyword.fragmentation.BuildConfig;
 import me.yokeyword.fragmentation.Fragmentation;
 import me.yokeyword.fragmentation.helper.ExceptionHandler;
@@ -34,6 +36,7 @@ public class BaseApplication extends Application {
     public static boolean isDebug = true;
     private static BaseApplication instance;
     private DaoSession mDaoSession;
+
     static {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
@@ -57,21 +60,32 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplicationContext = this.getApplicationContext();
-        instance=this;
+        instance = this;
+        Bugly.init(this, "b1d16990cd", true);
         Utils.init(this);
         initFra();
-        initGreenDao();
-    }
-    private void initGreenDao() {
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, Contents.DB_Name);
-        SQLiteDatabase database = devOpenHelper.getWritableDatabase();
-        DaoMaster daoMaster = new DaoMaster(database);
-        mDaoSession = daoMaster.newSession();
+        //initGreenDao();
+        DBManager.init(this);
+        // 安装tinker
+        Beta.installTinker();
+
     }
 
-    public DaoSession getDaoSession() {
-        return mDaoSession;
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //热更新必须开启
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+
+
+        // 安装tinker
+        Beta.installTinker();
     }
+
+
+
+
     private void initFra() {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
@@ -89,12 +103,11 @@ public class BaseApplication extends Application {
                 .install();
     }
 
-    public static DbHelperImpl dbHelper(){
-        return new DbHelperImpl();
-    }
+
     public static BaseApplication getInstance(){
         return instance;
     }
+
     public static Context getAppContext() {
         return mApplicationContext;
     }

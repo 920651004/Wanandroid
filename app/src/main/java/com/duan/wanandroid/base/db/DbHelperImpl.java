@@ -1,11 +1,8 @@
-package com.duan.greenDao.db;
+package com.duan.wanandroid.base.db;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.duan.greenDao.DaoSession;
-import com.duan.greenDao.HistoryData;
 import com.duan.greenDao.HistoryDataDao;
-import com.duan.wanandroid.base.BaseApplication;
 
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +28,7 @@ public class DbHelperImpl implements DBHelper {
     private String data;
     private static final int HISTORY_LIST_SIZE = 10;
     public DbHelperImpl() {
-        this.daoSession =  BaseApplication.getInstance().getDaoSession();
+        this.daoSession =  DBManager.getDaoSession();
     }
 
     @Override

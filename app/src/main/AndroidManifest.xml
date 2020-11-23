@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.duan.wanandroid">
 
+    <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -28,6 +29,7 @@
         android:label="Wanandroid"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_config"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.tree.TreeActivity"></activity>
         <activity android:name=".ui.main.MainActivity">
@@ -43,6 +45,19 @@
         <activity android:name=".ui.search.SearchMvpActivity"></activity>
         <activity android:name=".ui.searchlist.SearchListActivity"></activity>
         <activity android:name=".ui.callback.CallBackActivity"></activity>
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.tencent.bugly.hotfix.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

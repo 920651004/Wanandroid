@@ -1,8 +1,4 @@
-package com.duan.greenDao.db;
-
-import com.blankj.utilcode.util.LogUtils;
-import com.duan.greenDao.HistoryData;
-import com.duan.wanandroid.utlis.JsonUtil;
+package com.duan.wanandroid.base.db;
 
 import java.util.List;
 

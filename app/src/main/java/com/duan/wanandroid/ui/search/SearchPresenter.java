@@ -1,6 +1,6 @@
 package com.duan.wanandroid.ui.search;
 
-import com.duan.greenDao.HistoryData;
+import com.duan.wanandroid.base.db.HistoryData;
 import com.duan.wanandroid.base.interfaces.BaseMvpPresenter;
 
 import java.util.List;

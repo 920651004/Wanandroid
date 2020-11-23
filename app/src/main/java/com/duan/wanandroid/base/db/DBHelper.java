@@ -1,6 +1,4 @@
-package com.duan.greenDao.db;
-
-import com.duan.greenDao.HistoryData;
+package com.duan.wanandroid.base.db;
 
 import java.util.List;
 

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.duan.greenDao.HistoryData;
-import com.duan.greenDao.db.DataManger;
-import com.duan.greenDao.db.DbHelperImpl;
+import com.duan.wanandroid.base.db.HistoryData;
+import com.duan.wanandroid.base.db.DataManger;
+import com.duan.wanandroid.base.db.DbHelperImpl;
 import com.duan.wanandroid.base.BaseMvpPresenterImpl;
 import com.duan.wanandroid.base.interfaces.LifeFul;
 import com.duan.wanandroid.base.network.utils.CommJsonObserver;

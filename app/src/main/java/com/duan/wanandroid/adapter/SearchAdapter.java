@@ -2,7 +2,7 @@ package com.duan.wanandroid.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.duan.greenDao.HistoryData;
+import com.duan.wanandroid.base.db.HistoryData;
 import com.duan.wanandroid.R;
 
 import java.util.List;

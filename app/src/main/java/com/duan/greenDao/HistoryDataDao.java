@@ -3,6 +3,8 @@ package com.duan.greenDao;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
+import com.duan.wanandroid.base.db.HistoryData;
+
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
@@ -25,6 +27,8 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         public final static Property ID = new Property(0, Long.class, "ID", true, "_id");
         public final static Property Date = new Property(1, Long.class, "Date", false, "DATE");
         public final static Property Data = new Property(2, String.class, "Data", false, "DATA");
+        public final static Property DTest = new Property(3, String.class, "DTest", false, "DTEST");
+        public final static Property Num = new Property(4, int.class, "num", false, "NUM");
     }
 
 
@@ -42,7 +46,9 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"HISTORY_DATA\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: ID
                 "\"DATE\" INTEGER," + // 1: Date
-                "\"DATA\" TEXT);"); // 2: Data
+                "\"DATA\" TEXT," + // 2: Data
+                "\"DTEST\" TEXT," + // 3: DTest
+                "\"NUM\" INTEGER NOT NULL );"); // 4: num
     }
 
     /** Drops the underlying database table. */
@@ -69,6 +75,12 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         if (Data != null) {
             stmt.bindString(3, Data);
         }
+ 
+        String DTest = entity.getDTest();
+        if (DTest != null) {
+            stmt.bindString(4, DTest);
+        }
+        stmt.bindLong(5, entity.getNum());
     }
 
     @Override
@@ -89,6 +101,12 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         if (Data != null) {
             stmt.bindString(3, Data);
         }
+ 
+        String DTest = entity.getDTest();
+        if (DTest != null) {
+            stmt.bindString(4, DTest);
+        }
+        stmt.bindLong(5, entity.getNum());
     }
 
     @Override
@@ -101,7 +119,9 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         HistoryData entity = new HistoryData( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // ID
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // Date
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // Data
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Data
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // DTest
+            cursor.getInt(offset + 4) // num
         );
         return entity;
     }
@@ -111,6 +131,8 @@ public class HistoryDataDao extends AbstractDao<HistoryData, Long> {
         entity.setID(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDate(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setData(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDTest(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setNum(cursor.getInt(offset + 4));
      }
     
     @Override
